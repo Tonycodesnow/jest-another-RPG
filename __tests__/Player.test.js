@@ -35,12 +35,6 @@ test('gets inventory from player or returns false', () => {
     expect(player.getInventory()).toEqual(false);
 });
 
-test("gets player's health value", () => {
-    const player = new Player('Kai');
-
-    expect(player.getHealth()).toEqual(expect.stringContaining(player.health.toString()));
-})
-
 test('checks if player is alive or not', () => {
     const player = new Player('Kai');
 
@@ -49,6 +43,20 @@ test('checks if player is alive or not', () => {
     player.health = 0;
 
     expect(player.isAlive()).toBeFalsy();
+});
+
+test("gets player's health value", () => {
+    const player = new Player('Kai');
+
+    expect(player.getHealth()).toEqual(expect.stringContaining(player.health.toString()));
+})
+
+test("gets player's attack value", () => {
+    const player = new Player('Kai');
+    player.strength = 10;
+
+    expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+    expect(player.getAttackValue()).toBeLessThanOrEqual(15);
 });
 
 test("subtracts from player's health", () => {
@@ -64,13 +72,6 @@ test("subtracts from player's health", () => {
     expect(player.health).toBe(0);
 });
 
-test("gets player's attack value", () => {
-    const player = new Player('Kai');
-    player.strength = 10;
-
-    expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
-    expect(player.getAttackValue()).toBeLessThanOrEqual(15);
-});
 
 test('adds a potion to the inventory', () => {
     const player = new Player('Kai');
